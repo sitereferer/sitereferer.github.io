@@ -33,9 +33,9 @@
  <script>
     var url = window.location.search.split('url=')[1]; // Get the URL after ?url=
    
-  setTimeout(function() {
-    window.location.href = url;
-}, 5000);
+ setTimeout(function(){
+                window.location.assign= url; // The URL that will be redirected too.
+            }, 3000);
   
 </script>
 <script type="text/javascript">
