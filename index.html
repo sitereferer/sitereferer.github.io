@@ -30,15 +30,9 @@
 <div align="center">
   Please wait the website is loading 
 </div>
-<script>
-if(location.hash.length > 0) {
-  var element = document.createElement('meta');
-  if(element) {
-    element.setAttribute('http-equiv', 'refresh');
-    element.setAttribute('content', '4; URL=' + location.hash.substring(1));
-  }
-  document.getElementsByTagName('head')[0].appendChild(element);
-}
+ <script>
+    var url = window.location.search.split('url=')[1]; // Get the URL after ?url=
+    if( url ) window.location.replace(url);
 </script>
 <script type="text/javascript">
 CounterInit(3); 
