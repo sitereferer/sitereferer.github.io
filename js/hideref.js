@@ -1,22 +1,54 @@
-JScriptCodeDom.CodeParseException: String have line break , Line 1, Char 164 ---> System.Exception: String have line break
-   at JScriptCodeDom.CodeReader.ReadString() in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Reader.cs:line 1055
-   at JScriptCodeDom.CodeReader.ReadToken(Boolean previsexpression) in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Reader.cs:line 699
-   at JScriptCodeDom.CodeReader.PeekToken(Boolean previsexpression) in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Reader.cs:line 562
-   at JScriptCodeDom.CodeParser.SkipBlanksAndPeek(Boolean previsexp) in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 119
-   at JScriptCodeDom.CodeParser.ParseCommaSplitedCollection() in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 734
-   at JScriptCodeDom.CodeParser.ParseBracketArrayExpression() in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 807
-   at JScriptCodeDom.CodeParser.ParseLazyExpressionCore(Boolean bthrowerr) in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 638
-   at JScriptCodeDom.CodeParser.ParseLazyExpression(Boolean bthrowerr) in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 522
-   at JScriptCodeDom.CodeParser.ParseFullExpression(Boolean bthrowerror, Boolean allowcommer) in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 699
-   at JScriptCodeDom.CodeParser.ParseVarStatement() in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 926
-   at JScriptCodeDom.CodeParser.InternalParseStatementCore() in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 248
-   at JScriptCodeDom.CodeParser.InternalParseStatement() in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 175
-   at JScriptCodeDom.CodeParser.ParseStatement() in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 73
-   at JScriptCodeDom.CodeParser.ParseBlock() in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 63
-   at JScriptCodeDom.CodeParser.Parse(String code, String filename, Int32 lineoffset) in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 24
-   --- End of inner exception stack trace ---
-   at JScriptCodeDom.CodeParser.Parse(String code, String filename, Int32 lineoffset) in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 36
-   at JScriptCodeDom.CodeParser.Parse(String code) in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\JScriptProtectorV2\Parser.cs:line 13
-   at ProtectorV1.Protect(String[] codes) in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\ProtectorV1.cs:line 85
-   at ProtectorV1.Protect(String code) in c:\inetpub\wwwroot\javascriptobfuscator.com\App_Code\ProtectorV1.cs:line 74
-   at ASP.javascript_obfuscator_aspx.Button1_Click(Object sender, EventArgs e) in c:\inetpub\wwwroot\javascriptobfuscator.com\Javascript-Obfuscator.aspx:line 74
+var protected_links = "";
+var a_to_va = 0;
+var a_to_vb = 0;
+var a_to_vc = "";
+
+function auto_hide() {
+    var a = window.location.hostname;
+    if (protected_links != "" && !protected_links.match(a)) {
+        protected_links += ", " + a
+    } else if (protected_links == "") {
+        protected_links = a
+    }
+    var b = "";
+    var c = new Array;
+    var d = 0;
+    b = document.getElementsByTagName("a");
+    a_to_va = b.length;
+    c = a_to_fa();
+    d = c.length;
+    var e = false;
+    var j = 0;
+    var f = "";
+    for (var i = 0; i < a_to_va; i++) {
+        e = false;
+        j = 0;
+        while (e == false && j < d) {
+            f = b[i].href;
+            if (f.match(c[j]) || !f || !f.match("http://")) {
+                e = true
+            }
+            j++
+        }
+        if (e == false) {
+            b[i].href = "http://sitereferer.github.io/url.html?" + f;
+            a_to_vb++;
+            a_to_vc += i + ":::" + b[i].href + "\n"
+        }
+    }
+    var g = document.getElementById("anonyminized");
+    var h = document.getElementById("found_links");
+    if (g) {
+        g.innerHTML += a_to_vb
+    }
+    if (h) {
+        h.innerHTML += a_to_va
+    }
+}
+
+function a_to_fa() {
+    var a = new Array;
+    protected_links = protected_links.replace(" ", "");
+    a = protected_links.split(",");
+    return a
+}
