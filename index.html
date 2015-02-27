@@ -6,11 +6,31 @@
   <script src="js/jquery.timeout.interval.idle.js" type="text/javascript"></script>
   <link rel="stylesheet" href="css/jquery.countdown.timer.css" type="text/css" />
   <script src="js/jquery.countdown.counter.js" type="text/javascript"></script>
-  <SCRIPT LANGUAGE="JavaScript" SRC="./js/szcript.js"></SCRIPT>
+
   <link rel="stylesheet" type="text/css" href="./css/styles.css" />
   <title>JNTUH Updates Url Loader &hellip;</title>
 </head>
-<body>
+
+
+ <script>
+  var delay=4500;
+  function pass_it_on() {
+     var l=window.location+"";
+     var dsp=document.getElementById("display");
+     var qsloc=l.indexOf("?");
+         if(qsloc>=0) {
+            var query_string=unescape(l.substring(qsloc+1));
+            window.location=query_string;
+         }
+    }
+
+  function main() {
+    setTimeout(function(){pass_it_on();},delay)
+  }
+</script>
+
+<body onload="main();">
+<div id="display">
 <div style="font-size: 54px; "align="center"><strong> <a style="color: black;" href="http://www.jntuhupdates.info">JNTUH Updates Page loader</a></strong></div>
 <div style="font-size: 34px;"align="center"><strong> You will be redirected in</strong></div>
 
@@ -28,16 +48,9 @@
 <div style="font-size: 34px;"align="center"><strong> Second's</strong></div>
 
 <div align="center">
-  Please wait the website is loading 
+ <strong>Please be Patient</strong>
 </div>
- <script>
-    var url = window.location.search.split('url=')[1]; // Get the URL after ?url=
-   
- setTimeout(function(){
-                window.location.assign= url; // The URL that will be redirected too.
-            }, 3000);
-  
-</script>
+
 <script type="text/javascript">
 CounterInit(3); 
 </script>
